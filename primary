@@ -1,0 +1,39 @@
+def check_file(filepath,time):
+    try:
+        file=open(filepath)
+    except FileNotFoundError:
+        return "Error - the specified file does not exist. Check if all files are in the same file path."
+    except Exception as error:
+        return error
+    total=0
+    for i in range(time*5):
+        line=file.readline()
+        if "information" and "authors" and "name" in line:
+            total+=30
+        if "slotType" and "slots" in line:
+            total+=20
+        if "simpleFunction" in line:
+            total+=20
+        if "scaledragCoef" in line:
+            total+=10
+    return total
+    
+def main():
+    print("Welcome to the BeamNG malware detector program. Results may not be completely accurate.")
+    while True:
+        time=int(input("How detailed would you like your scan to be? Longer scans may take more time. Enter a number between 1-5: "))
+        if 1<=time<=5:
+            break
+        else:
+            print("Incorrect input. Please try again.")
+            continue
+    filepath=input("Copy and paste the name of the file you wish to check: ")
+    total=check_file(filepath,time)
+    if ".jbeam" in filepath:
+        total+=10+(len(filepath)/10)
+    decision="USE"
+    if total<80:
+        decision="AVOID"
+    print(f"\nBased on all data, the file is determined to be about {total}% SAFE to use.\nIt is recommended that you {decision} this file.\n\nThis program was created by an independent developer and is not associated with BeamNG.")
+
+main()
