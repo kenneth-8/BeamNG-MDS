@@ -19,7 +19,7 @@ def check_file(filepath,time):
     return total
     
 def main():
-    print("Welcome to the BeamNG malware detector program. Results may not be completely accurate.")
+    print("Welcome to the BeamNG malware detection script. Results may not be completely accurate.")
     while True:
         time=int(input("How detailed would you like your scan to be? Longer scans may take more time. Enter a number between 1-5: "))
         if 1<=time<=5:
